@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Васильки — группа детского сада</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#F6F8F2;
+  --surface:#FFFFFF;
+  --surface-tint:#EEF3E7;
+  --cornflower-50:#EAF1FB;
+  --cornflower-100:#CFE0F5;
+  --cornflower-400:#4F86C6;
+  --cornflower-600:#3768A0;
+  --cornflower-800:#22456B;
+  --leaf-50:#EEF5E6;
+  --leaf-400:#7FAE63;
+  --leaf-600:#57804A;
+  --leaf-800:#33511F;
+  --sun-50:#FEF6E4;
+  --sun-400:#F3B93B;
+  --sun-700:#8C5A08;
+  --coral-50:#FCEDF0;
+  --coral-400:#E8748F;
+  --coral-700:#8A2F45;
+  --text-primary:#233428;
+  --text-secondary:#5A6B57;
+  --text-muted:#8A9686;
+  --border:#DEE6D6;
+  --border-strong:#C3D0B9;
+  --shadow-card: 0 1px 2px rgba(34,52,40,0.06), 0 4px 14px rgba(34,52,40,0.05);
+  --radius-card:18px;
+  --radius-pill:999px;
+  --font-display:'Fredoka', system-ui, sans-serif;
+  --font-body:'Manrope', system-ui, sans-serif;
+}
+
+:root[data-theme="dark"]{
+  --bg:#161C15;
+  --surface:#1F2A1D;
+  --surface-tint:#243021;
+  --cornflower-50:#1E2C3E;
+  --cornflower-100:#28405C;
+  --cornflower-400:#6FA0DA;
+  --cornflower-600:#8FB6E4;
+  --cornflower-800:#D6E5F7;
+  --leaf-50:#213321;
+  --leaf-400:#8FC471;
+  --leaf-600:#A6D48C;
+  --leaf-800:#E1F0D6;
+  --sun-50:#3A2E10;
+  --sun-400:#F3C15C;
+  --sun-700:#F6D488;
+  --coral-50:#3A1F26;
+  --coral-400:#EF93A6;
+  --coral-700:#F6C4D0;
+  --text-primary:#EAF0E5;
+  --text-secondary:#B7C4B0;
+  --text-muted:#889280;
+  --border:#31402E;
+  --border-strong:#3C4E37;
+  --shadow-card: 0 1px 2px rgba(0,0,0,0.3), 0 4px 14px rgba(0,0,0,0.25);
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161C15;
+    --surface:#1F2A1D;
+    --surface-tint:#243021;
+    --cornflower-50:#1E2C3E;
+    --cornflower-100:#28405C;
+    --cornflower-400:#6FA0DA;
+    --cornflower-600:#8FB6E4;
+    --cornflower-800:#D6E5F7;
+    --leaf-50:#213321;
+    --leaf-400:#8FC471;
+    --leaf-600:#A6D48C;
+    --leaf-800:#E1F0D6;
+    --sun-50:#3A2E10;
+    --sun-400:#F3C15C;
+    --sun-700:#F6D488;
+    --coral-50:#3A1F26;
+    --coral-400:#EF93A6;
+    --coral-700:#F6C4D0;
+    --text-primary:#EAF0E5;
+    --text-secondary:#B7C4B0;
+    --text-muted:#889280;
+    --border:#31402E;
+    --border-strong:#3C4E37;
+    --shadow-card: 0 1px 2px rgba(0,0,0,0.3), 0 4px 14px rgba(0,0,0,0.25);
+  }
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;}
+
+.wrap{
+  max-width:920px;
+  margin:0 auto;
+  padding:0 20px 64px;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg,var(--cornflower-50) 0%, var(--bg) 100%);
+  border-bottom:1px solid var(--border);
+}
+.hero-inner{
+  max-width:920px;
+  margin:0 auto;
+  padding:48px 20px 40px;
+  position:relative;
+  z-index:2;
+}
+.hero-field{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  opacity:0.9;
+  pointer-events:none;
+}
+.eyebrow-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+.hero h1{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(34px,6vw,52px);
+  margin:0 0 6px;
+  color:var(--cornflower-800);
+  letter-spacing:-0.5px;
+}
+.hero .sub{
+  font-size:17px;
+  color:var(--text-secondary);
+  max-width:56ch;
+  margin:0 0 22px;
+}
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.meta-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:8px 16px 8px 12px;
+  border-radius:var(--radius-pill);
+  font-size:14px;
+  color:var(--text-secondary);
+  box-shadow:var(--shadow-card);
+}
+.meta-pill b{color:var(--text-primary);font-weight:600;}
+
+/* ---------- TABS ---------- */
+.tabs-nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:var(--bg);
+  padding:14px 0 10px;
+  margin-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.tabs-scroll{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  padding:2px;
+}
+.tabs-scroll::-webkit-scrollbar{display:none;}
+.tab-btn{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 18px;
+  border-radius:var(--radius-pill);
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text-secondary);
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:14.5px;
+  cursor:pointer;
+  transition:background .15s ease, color .15s ease, border-color .15s ease;
+  white-space:nowrap;
+}
+.tab-btn .ic{font-size:16px;}
+.tab-btn:hover{border-color:var(--border-strong);}
+.tab-btn.active{
+  background:var(--cornflower-400);
+  border-color:var(--cornflower-400);
+  color:#fff;
+}
+
+.panel{display:none;padding-top:22px;animation:fadein .25s ease;}
+.panel.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+.section-title{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:24px;
+  margin:0 0 6px;
+  color:var(--text-primary);
+}
+.section-desc{
+  color:var(--text-secondary);
+  font-size:15px;
+  margin:0 0 24px;
+  max-width:60ch;
+}
+
+/* ---------- STAT CARDS ---------- */
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+  margin-bottom:28px;
+}
+.stat-card{
+  background:var(--surface-tint);
+  border-radius:14px;
+  padding:16px 18px;
+}
+.stat-card .num{
+  font-family:var(--font-display);
+  font-size:28px;
+  font-weight:600;
+  color:var(--leaf-800);
+  display:block;
+}
+.stat-card .lbl{
+  font-size:13px;
+  color:var(--text-secondary);
+}
+
+/* ---------- TABLE (roster) ---------- */
+.roster-table-wrap{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-card);
+  overflow:hidden;
+  box-shadow:var(--shadow-card);
+}
+table{width:100%;border-collapse:collapse;font-size:14.5px;}
+thead th{
+  text-align:left;
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:12.5px;
+  color:var(--text-muted);
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+  background:var(--surface-tint);
+}
+tbody td{
+  padding:11px 16px;
+  border-bottom:1px solid var(--border);
+  color:var(--text-primary);
+}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:var(--cornflower-50);}
+.num-cell{text-align:right;font-variant-numeric:tabular-nums;}
+.name-cell{font-weight:600;}
+tfoot td{
+  padding:13px 16px;
+  font-weight:700;
+  background:var(--surface-tint);
+  border-top:2px solid var(--border-strong);
+}
+.tbl-scroll{overflow-x:auto;}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:3px 10px;
+  border-radius:var(--radius-pill);
+  font-size:12px;
+  font-weight:700;
+}
+.badge-soon{background:var(--coral-50);color:var(--coral-700);}
+.badge-age{background:var(--leaf-50);color:var(--leaf-800);}
+.badge-paid{background:var(--leaf-50);color:var(--leaf-800);}
+.badge-debt{background:var(--sun-50);color:var(--sun-700);}
+
+/* ---------- BIRTHDAY MONTH CHART ---------- */
+.month-chart{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-card);
+  padding:22px 22px 8px;
+  box-shadow:var(--shadow-card);
+  margin-bottom:28px;
+}
+.month-row{
+  display:grid;
+  grid-template-columns:78px 1fr 34px;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+}
+.month-name{font-size:13.5px;color:var(--text-secondary);font-weight:600;}
+.month-track{
+  background:var(--surface-tint);
+  border-radius:8px;
+  height:16px;
+  overflow:hidden;
+}
+.month-fill{
+  height:100%;
+  border-radius:8px;
+  background:linear-gradient(90deg,var(--cornflower-400),var(--leaf-400));
+}
+.month-count{font-size:13.5px;font-weight:700;text-align:right;color:var(--text-primary);}
+
+/* ---------- UPCOMING BIRTHDAYS LIST ---------- */
+.upcoming-list{display:flex;flex-direction:column;gap:10px;}
+.up-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:13px 16px;
+}
+.up-flower{
+  flex:0 0 auto;
+  width:38px;height:38px;
+  border-radius:50%;
+  background:var(--cornflower-50);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+}
+.up-name{font-weight:700;font-size:14.5px;flex:1;min-width:0;}
+.up-date{font-size:13px;color:var(--text-secondary);white-space:nowrap;}
+.up-days{
+  font-size:12.5px;
+  font-weight:700;
+  padding:4px 11px;
+  border-radius:var(--radius-pill);
+  white-space:nowrap;
+  background:var(--surface-tint);
+  color:var(--text-secondary);
+}
+.up-card.soon .up-days{background:var(--coral-50);color:var(--coral-700);}
+.up-card.today{border-color:var(--coral-400);}
+.up-card.today .up-days{background:var(--coral-400);color:#fff;}
+
+/* ---------- NEWS ---------- */
+.news-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-card);
+  padding:24px 26px;
+  margin-bottom:22px;
+  box-shadow:var(--shadow-card);
+}
+.news-date{
+  font-size:12.5px;
+  color:var(--cornflower-600);
+  font-weight:700;
+  margin-bottom:6px;
+}
+.news-title{
+  font-family:var(--font-display);
+  font-size:19px;
+  font-weight:600;
+  margin:0 0 16px;
+}
+.topic{margin-bottom:16px;}
+.topic:last-child{margin-bottom:0;}
+.topic h4{
+  margin:0 0 6px;
+  font-size:14.5px;
+  font-weight:700;
+  color:var(--leaf-800);
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.topic ul{margin:0;padding-left:20px;}
+.topic li{margin-bottom:4px;font-size:14.5px;}
+.topic p{margin:0;font-size:14.5px;}
+.callout{
+  background:var(--sun-50);
+  border-radius:12px;
+  padding:12px 16px;
+  font-size:14px;
+  color:var(--text-primary);
+  margin-top:14px;
+}
+.callout b{color:var(--sun-700);}
+.rk-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:6px;
+}
+.rk-chip{
+  background:var(--cornflower-50);
+  color:var(--cornflower-800);
+  font-size:13px;
+  font-weight:600;
+  padding:5px 12px;
+  border-radius:var(--radius-pill);
+}
+.link-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:var(--cornflower-400);
+  color:#fff !important;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+  padding:10px 18px;
+  border-radius:var(--radius-pill);
+  margin-top:10px;
+}
+.divider-note{
+  font-size:13px;
+  color:var(--text-muted);
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px dashed var(--border);
+}
+
+/* ---------- PAYMENTS ---------- */
+.progress-wrap{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-card);
+  padding:22px 24px;
+  margin-bottom:22px;
+  box-shadow:var(--shadow-card);
+}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+.progress-top .big{font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--leaf-800);}
+.progress-top .of{color:var(--text-secondary);font-size:14px;}
+.progress-track{background:var(--surface-tint);border-radius:10px;height:14px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--leaf-400),var(--cornflower-400));border-radius:10px;}
+.progress-deadline{margin-top:10px;font-size:13.5px;color:var(--text-secondary);}
+
+/* ---------- FOOTER ---------- */
+.foot{
+  text-align:center;
+  color:var(--text-muted);
+  font-size:13px;
+  margin-top:40px;
+}
+
+@media (max-width:560px){
+  .hero-inner{padding:36px 20px 30px;}
+  .month-row{grid-template-columns:60px 1fr 28px;}
+  .news-card{padding:20px 18px;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <svg class="hero-field" viewBox="0 0 920 220" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g opacity="0.5">
+      <circle cx="70" cy="190" r="6" fill="var(--cornflower-400)"/>
+      <circle cx="55" cy="180" r="4" fill="var(--cornflower-400)"/>
+      <circle cx="85" cy="180" r="4" fill="var(--cornflower-400)"/>
+      <circle cx="62" cy="200" r="4" fill="var(--cornflower-400)"/>
+      <circle cx="78" cy="200" r="4" fill="var(--cornflower-400)"/>
+      <circle cx="70" cy="190" r="2.5" fill="var(--sun-400)"/>
+    </g>
+    <g opacity="0.4">
+      <circle cx="830" cy="170" r="7" fill="var(--cornflower-400)"/>
+      <circle cx="812" cy="158" r="4.5" fill="var(--cornflower-400)"/>
+      <circle cx="848" cy="158" r="4.5" fill="var(--cornflower-400)"/>
+      <circle cx="820" cy="182" r="4.5" fill="var(--cornflower-400)"/>
+      <circle cx="840" cy="182" r="4.5" fill="var(--cornflower-400)"/>
+      <circle cx="830" cy="170" r="3" fill="var(--sun-400)"/>
+    </g>
+    <g opacity="0.35">
+      <circle cx="600" cy="205" r="5" fill="var(--cornflower-400)"/>
+      <circle cx="588" cy="196" r="3.2" fill="var(--cornflower-400)"/>
+      <circle cx="612" cy="196" r="3.2" fill="var(--cornflower-400)"/>
+      <circle cx="592" cy="214" r="3.2" fill="var(--cornflower-400)"/>
+      <circle cx="608" cy="214" r="3.2" fill="var(--cornflower-400)"/>
+      <circle cx="600" cy="205" r="2" fill="var(--sun-400)"/>
+    </g>
+    <path d="M0,220 Q460,195 920,220" stroke="var(--leaf-400)" stroke-width="3" fill="none" opacity="0.5"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="eyebrow-row">
+      <span style="font-size:26px;">🌼</span>
+    </div>
+    <h1>Васильки</h1>
+    <p class="sub">Информация для родительского комитета: список группы, дни рождения, новости с собраний, взносы и расходы общего фонда.</p>
+    <div class="hero-meta">
+      <span class="meta-pill">👩‍🏫 Воспитатель: <b>Наталья Владимировна</b></span>
+      <span class="meta-pill">👶 Детей в группе: <b>24</b></span>
+      <span class="meta-pill">📅 Обновлено: <b>16.09.2026</b></span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="tabs-nav">
+    <div class="tabs-scroll" id="tabsScroll">
+      <button class="tab-btn active" data-tab="roster"><span class="ic">👶</span>Список группы</button>
+      <button class="tab-btn" data-tab="birthdays"><span class="ic">🎂</span>Дни рождения</button>
+      <button class="tab-btn" data-tab="news"><span class="ic">📋</span>Новости</button>
+      <button class="tab-btn" data-tab="payments"><span class="ic">💳</span>Оплаты</button>
+      <button class="tab-btn" data-tab="expenses"><span class="ic">💰</span>Расходы</button>
+    </div>
+  </div>
+
+  <!-- ===================== ROSTER ===================== -->
+  <div class="panel active" id="panel-roster">
+    <h2 class="section-title">Список группы</h2>
+    <p class="section-desc">24 ребёнка. Возраст считается автоматически на сегодняшнюю дату.</p>
+
+    <div class="roster-table-wrap tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Ребёнок</th><th>Дата рождения</th><th style="text-align:right;">Возраст</th></tr>
+        </thead>
+        <tbody id="rosterBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== BIRTHDAYS ===================== -->
+  <div class="panel" id="panel-birthdays">
+    <h2 class="section-title">Дни рождения</h2>
+    <p class="section-desc">Распределение по месяцам и ближайшие праздники группы.</p>
+
+    <div class="month-chart" id="monthChart"></div>
+
+    <h3 class="section-title" style="font-size:19px;margin-bottom:14px;">Ближайшие дни рождения</h3>
+    <div class="upcoming-list" id="upcomingList"></div>
+  </div>
+
+  <!-- ===================== NEWS ===================== -->
+  <div class="panel" id="panel-news">
+    <h2 class="section-title">Новости</h2>
+    <p class="section-desc">Итоги собраний и сообщения родительского комитета.</p>
+
+    <div class="news-card">
+      <div class="news-date">15 сентября 2026</div>
+      <div class="news-title">Итоги родительского собрания</div>
+
+      <div class="topic">
+        <h4>🗂️ Общее</h4>
+        <ul>
+          <li>В первые два года прописей для занятий нет. Позже, по желанию родителей, их могут ввести.</li>
+          <li>В старшей и подготовительной группах начинается подготовка к школе.</li>
+          <li>Логопед в саду работает с детьми с 5 лет.</li>
+          <li>Наш воспитатель остаётся с группой до выпуска. Дополнительно ищут ещё одного педагога.</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h4>⚽ Физкультура</h4>
+        <ul>
+          <li>Занятия два раза в неделю.</li>
+          <li>Форма — однотонные васильковые футболки.</li>
+        </ul>
+        <div class="callout"><b>Родительский комитет:</b> нужно найти и разослать ссылку на один конкретный вариант футболки, чтобы у всех были одинаковые.</div>
+      </div>
+
+      <div class="topic">
+        <h4>🧩 Кружки</h4>
+        <ul>
+          <li>Бесплатно: лего и робототехника.</li>
+          <li>Остальные кружки платные, перечень пока не определён.</li>
+          <li>Все занятия проходят в часы пребывания в саду.</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h4>🕓 Группа продлённого дня</h4>
+        <ul>
+          <li>Информации пока нет. Группа должна набраться из детей всех групп.</li>
+          <li>Скорее всего будет платной — ориентировочно 100 ₽ в час.</li>
+          <li>На педсовете этот вопрос ещё не поднимался.</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h4>💳 Оплата</h4>
+        <p>О внесении оплаты сообщать воспитателю: достаточно написать дату и факт оплаты, чек прикладывать не нужно.</p>
+      </div>
+
+      <div class="topic">
+        <h4>🍽️ Питание и пропуски</h4>
+        <ul>
+          <li>С питания снимают только по болезни и при наличии справки. Просьбы вида «снимите нас на три дня, мы не придём» не принимаются.</li>
+          <li>Если отсутствие не связано с болезнью, достаточно просто предупредить воспитателя.</li>
+          <li>Ребёнка желательно лечить сразу. Если ничего серьёзного — лучше обойтись без справки, чтобы группу не отправили на карантин. Не посещать сад без справки можно до 5 дней.</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h4>🌼 Родительский комитет</h4>
+        <p>Состав: Постоловы (двое), Романовских, Кукарских, Тасковы.</p>
+        <p style="margin-top:6px;">Представитель в родительском совете сада — Сидорова Татьяна.</p>
+      </div>
+
+      <div class="topic">
+        <h4>➡️ Следующий год</h4>
+        <p>Переходим в среднюю группу: поднимаемся на 2-й или 3-й этаж, веранда будет другая.</p>
+      </div>
+
+      <div class="topic">
+        <h4>🛒 Что нужно купить</h4>
+        <ul>
+          <li>Клеёнки на столы — 6 штук (сбор средств через родительский комитет).</li>
+          <li>При желании в шкафчик можно приклеить свои крючки.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-title">Формирование родительского комитета</div>
+      <p style="margin:0 0 12px;">Уважаемые родители, доброе утро! Состоялось первое собрание родительского комитета. По итогам утверждён состав:</p>
+      <div class="rk-list">
+        <span class="rk-chip">Председатель — Романовских Дарья Андреевна</span>
+        <span class="rk-chip">Секретарь — Постолова Евгения Юрьевна</span>
+        <span class="rk-chip">Казначей — Тасков Фёдор Алексеевич</span>
+      </div>
+
+      <div class="topic" style="margin-top:18px;">
+        <h4>💰 Бюджет</h4>
+        <p>Все сдают одинаковую сумму в общий фонд. Родительский комитет берёт на себя закупку всего необходимого для группы:</p>
+        <ul>
+          <li>Расходные материалы — по запросу воспитателя.</li>
+          <li>Организация праздников и поздравления детей.</li>
+          <li>Подарки сотрудникам детского сада к профессиональным и календарным праздникам.</li>
+        </ul>
+      </div>
+
+      <div class="topic">
+        <h4>🗳️ Принятие решений</h4>
+        <p>Чтобы оперативно решать текущие вопросы без долгих обсуждений в чате, голосования по выбору подарков и другим организационным моментам проводиться не будут.</p>
+      </div>
+
+      <div class="topic">
+        <h4>📊 Отчётность</h4>
+        <p>После каждой закупки родительский комитет будет публиковать отчёт по израсходованным средствам.</p>
+      </div>
+
+      <div class="callout">Все желающие приглашаются в помощь родительскому комитету — будем рады поддержке!</div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-title">Взнос в общий фонд на 2026 год</div>
+      <p style="margin:0 0 12px;">Родительский комитет определил сумму взноса в общий фонд на текущий год — <b>1 500 ₽</b> с ребёнка.</p>
+
+      <div class="topic">
+        <h4>🧮 Из чего складывается сумма (ориентировочно)</h4>
+        <ul>
+          <li>Подарки детям к праздникам — 300–500 ₽</li>
+          <li>Подарок ко дню воспитателя — 200–300 ₽</li>
+          <li>Подарки воспитателям на дни рождения — до 300 ₽</li>
+          <li>Текущие мелкие расходы и непредвиденные траты — 200 ₽</li>
+        </ul>
+        <p>Итого получается 1 000–1 300 ₽, сумму округлили до 1 500 ₽, чтобы был небольшой запас и не пришлось собирать деньги повторно. Остаток, если он будет, перейдёт на следующие расходы группы.</p>
+      </div>
+
+      <div class="callout"><b>Собрать нужно до 25.09.2026</b> — 27 сентября у воспитателя день рождения, нужно успеть подготовиться. Для тех, кто не может внести всю сумму сразу — можно оплатить частично.</div>
+
+      <div class="topic" style="margin-top:16px;">
+        <h4>💸 Реквизиты для перевода</h4>
+        <p>Получатель: Фёдор Т. — казначей родительского комитета.</p>
+        <p style="margin-top:6px;">В сообщении к переводу указываем ФИО ребёнка. После оплаты, пожалуйста, напишите казначею дату и факт перевода — чек присылать не нужно.</p>
+        <a class="link-btn" href="https://www.tbank.ru/cf/Tw2S0HEo0v" target="_blank" rel="noopener">Перейти к переводу →</a>
+      </div>
+
+      <div class="divider-note">Ожидаемая сумма общего фонда — ориентировочно 37 500 ₽ (из расчёта на 25 детей). Отчёт по расходам будет публиковаться после каждой закупки.</div>
+    </div>
+  </div>
+
+  <!-- ===================== PAYMENTS ===================== -->
+  <div class="panel" id="panel-payments">
+    <h2 class="section-title">Оплаты в общий фонд</h2>
+    <p class="section-desc">Взнос — 1 500 ₽ с ребёнка. Срок — до 25.09.2026.</p>
+
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span class="big" id="paidTotal">0 ₽</span>
+        <span class="of">собрано из <span id="planTotal">36 000 ₽</span></span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%;"></div></div>
+      <div class="progress-deadline">Внести оплату нужно до <b>25.09.2026</b> · реквизиты — во вкладке «Новости»</div>
+    </div>
+
+    <div class="roster-table-wrap tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Ребёнок</th><th style="text-align:right;">Сдал</th><th style="text-align:right;">Долг</th></tr>
+        </thead>
+        <tbody id="paymentsBody"></tbody>
+        <tfoot>
+          <tr><td>Итого</td><td class="num-cell" id="footPaid">0 ₽</td><td class="num-cell" id="footDebt">36 000 ₽</td></tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== EXPENSES ===================== -->
+  <div class="panel" id="panel-expenses">
+    <h2 class="section-title">Расходы общего фонда</h2>
+    <p class="section-desc">Отчёт будет обновляться после каждой закупки.</p>
+
+    <div class="roster-table-wrap tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Наименование</th><th style="text-align:right;">План</th><th style="text-align:right;">Потрачено</th><th>Примечание</th></tr>
+        </thead>
+        <tbody id="expensesBody"></tbody>
+        <tfoot>
+          <tr><td>Итого</td><td class="num-cell" id="expPlanTotal">32 500 ₽</td><td class="num-cell">0 ₽</td><td></td></tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">Страница подготовлена для родительского комитета группы «Васильки» 🌼</div>
+</div>
+
+<script>
+const children = [
+  ["Боброва Василиса Ивановна","2023-01-07"],
+  ["Борзовский Александр Викторович","2023-01-24"],
+  ["Буржинская Екатерина Дмитриевна","2023-01-10"],
+  ["Васильева Доминика Дмитриевна","2023-01-26"],
+  ["Волкова Виктория Вадимовна","2023-08-29"],
+  ["Жиляков Арсений Александрович","2023-01-13"],
+  ["Зырянов Алексей Николаевич","2023-01-09"],
+  ["Князкин Лев Алексеевич","2023-01-20"],
+  ["Кукарских Леонид Александрович","2022-10-11"],
+  ["Кукарских Семен Александрович","2022-10-11"],
+  ["Максимов Вадим Дмитриевич","2023-04-11"],
+  ["Маматова Камила Рустамовна","2023-02-04"],
+  ["Постолов Венадий Алексеевич","2023-03-02"],
+  ["Родионова Виктория Игоревна","2023-02-10"],
+  ["Романовских Маргарита Евгеньевна","2023-01-08"],
+  ["Сафонова Василиса Дмитриевна","2023-01-27"],
+  ["Сидоров Федор Андреевич","2023-10-11"],
+  ["Соломахина Надежда Александровна","2023-09-20"],
+  ["Таскова София Федоровна","2023-07-27"],
+  ["Токарева Амелия Даниловна","2023-01-16"],
+  ["Ударцева Маргарита Андреевна","2023-02-01"],
+  ["Утин Григорий Витальевич","2023-03-21"],
+  ["Хомутинников Даниил Вячеславович","2023-02-10"],
+  ["Черепанов Тимофей Александрович","2023-01-31"]
+];
+
+const monthNamesFull = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+const monthNamesShort = ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек"];
+
+function parseDate(s){
+  const [y,m,d] = s.split("-").map(Number);
+  return {y, m, d};
+}
+
+function pad(n){ return n<10 ? "0"+n : ""+n; }
+
+const today = new Date();
+today.setHours(0,0,0,0);
+
+function calcAge(dob){
+  const {y,m,d} = parseDate(dob);
+  const birth = new Date(y, m-1, d);
+  let age = today.getFullYear() - birth.getFullYear();
+  const hasHadBirthdayThisYear = (today.getMonth() > birth.getMonth()) ||
+    (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate());
+  if(!hasHadBirthdayThisYear) age--;
+  return age;
+}
+
+function nextBirthdayInfo(dob){
+  const {m,d} = parseDate(dob);
+  let next = new Date(today.getFullYear(), m-1, d);
+  if(next < today){ next = new Date(today.getFullYear()+1, m-1, d); }
+  const diffDays = Math.round((next - today) / 86400000);
+  return {next, diffDays};
+}
+
+// ---- Roster table ----
+const rosterBody = document.getElementById("rosterBody");
+children.slice().sort((a,b)=>a[0].localeCompare(b[0],'ru')).forEach(([name,dob])=>{
+  const {y,m,d} = parseDate(dob);
+  const age = calcAge(dob);
+  const tr = document.createElement("tr");
+  tr.innerHTML = `<td class="name-cell">${name}</td><td>${pad(d)}.${pad(m)}.${y}</td><td class="num-cell"><span class="badge badge-age">${age} года</span></td>`;
+  rosterBody.appendChild(tr);
+});
+
+// ---- Month chart ----
+const counts = new Array(12).fill(0);
+children.forEach(([,dob])=>{ counts[parseDate(dob).m - 1]++; });
+const maxCount = Math.max(...counts);
+const monthChart = document.getElementById("monthChart");
+counts.forEach((c,i)=>{
+  if(c === 0) return;
+  const row = document.createElement("div");
+  row.className = "month-row";
+  const pct = Math.round((c / maxCount) * 100);
+  row.innerHTML = `<span class="month-name">${monthNamesShort[i]}</span>
+    <span class="month-track"><span class="month-fill" style="width:${pct}%"></span></span>
+    <span class="month-count">${c}</span>`;
+  monthChart.appendChild(row);
+});
+
+// ---- Upcoming birthdays ----
+const withNext = children.map(([name,dob])=>{
+  const info = nextBirthdayInfo(dob);
+  const {m,d} = parseDate(dob);
+  return {name, dob, m, d, diffDays: info.diffDays};
+});
+withNext.sort((a,b)=>a.diffDays - b.diffDays);
+
+const upcomingList = document.getElementById("upcomingList");
+withNext.slice(0,8).forEach(item=>{
+  const card = document.createElement("div");
+  let cls = "up-card";
+  let daysLabel = item.diffDays + " дн.";
+  if(item.diffDays === 0){ cls += " today"; daysLabel = "сегодня 🎉"; }
+  else if(item.diffDays <= 14){ cls += " soon"; }
+  card.className = cls;
+  card.innerHTML = `<div class="up-flower">🌼</div>
+    <div class="up-name">${item.name}</div>
+    <div class="up-date">${pad(item.d)} ${monthNamesFull[item.m-1]}</div>
+    <div class="up-days">${daysLabel}</div>`;
+  upcomingList.appendChild(card);
+});
+
+// ---- Payments ----
+const DUE = 1500;
+const paymentsBody = document.getElementById("paymentsBody");
+let totalPaid = 0, totalDebt = 0;
+children.slice().sort((a,b)=>a[0].localeCompare(b[0],'ru')).forEach(([name])=>{
+  const paid = 0;
+  const debt = DUE - paid;
+  totalPaid += paid; totalDebt += debt;
+  const tr = document.createElement("tr");
+  tr.innerHTML = `<td class="name-cell">${name}</td>
+    <td class="num-cell"><span class="badge badge-paid">${paid.toLocaleString('ru-RU')} ₽</span></td>
+    <td class="num-cell"><span class="badge badge-debt">${debt.toLocaleString('ru-RU')} ₽</span></td>`;
+  paymentsBody.appendChild(tr);
+});
+document.getElementById("footPaid").textContent = totalPaid.toLocaleString('ru-RU') + " ₽";
+document.getElementById("footDebt").textContent = totalDebt.toLocaleString('ru-RU') + " ₽";
+document.getElementById("paidTotal").textContent = totalPaid.toLocaleString('ru-RU') + " ₽";
+document.getElementById("planTotal").textContent = (totalPaid+totalDebt).toLocaleString('ru-RU') + " ₽";
+document.getElementById("progressFill").style.width = Math.round((totalPaid/(totalPaid+totalDebt))*100) + "%";
+
+// ---- Expenses ----
+const expenses = [
+  ["Подарки детям к праздникам", 12500, 0, ""],
+  ["Подарок ко дню воспитателя", 7500, 0, ""],
+  ["Подарки воспитателям на дни рождения", 7500, 0, ""],
+  ["Текущие мелкие расходы и непредвиденные траты", 5000, 0, ""]
+];
+const expensesBody = document.getElementById("expensesBody");
+let planSum = 0;
+expenses.forEach(([name,plan,spent,note])=>{
+  planSum += plan;
+  const tr = document.createElement("tr");
+  tr.innerHTML = `<td>${name}</td><td class="num-cell">${plan.toLocaleString('ru-RU')} ₽</td><td class="num-cell">${spent.toLocaleString('ru-RU')} ₽</td><td>${note || "—"}</td>`;
+  expensesBody.appendChild(tr);
+});
+document.getElementById("expPlanTotal").textContent = planSum.toLocaleString('ru-RU') + " ₽";
+
+// ---- Tabs ----
+const tabBtns = document.querySelectorAll(".tab-btn");
+const panels = document.querySelectorAll(".panel");
+tabBtns.forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    tabBtns.forEach(b=>b.classList.remove("active"));
+    panels.forEach(p=>p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("panel-"+btn.dataset.tab).classList.add("active");
+    window.scrollTo({top: document.querySelector(".tabs-nav").offsetTop - 8, behavior:"smooth"});
+  });
+});
+</script>
+
+</body>
+</html>
